@@ -1,0 +1,19 @@
+{
+  "name": "insomnia-plugin-inception",
+  "version": "1.0.0",
+  "author": "Vlad Sebastian Patras <senoctar@gmail.com>",
+  "description": "Insomnia json in json",
+  "license": "MIT",
+  "repository": "https://github.com/getinsomnia/insomnia/tree/master/plugins/insomnia-plugin-base64",
+  "bugs": {
+    "url": "https://github.com/getinsomnia/insomnia"
+  },
+  "main": "index.js",
+  "insomnia": {
+    "name": "inception",
+    "description": "Encode json in json"
+  },
+  "scripts": {
+    "test": "node --version"
+  }
+}
