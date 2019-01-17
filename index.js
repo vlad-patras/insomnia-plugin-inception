@@ -1,50 +1,59 @@
-const msg_json = "inception: json object following the tag will be encoded as json string";
+
+const marker = "__JSONInception__";
+
+function placeHolderMessage(encoding) {
+    return "value will be encoded as json string " + marker + encoding + "__";
+}
+
+const placeHolderRegex = new RegExp(placeHolderMessage('(.*)'));
 
 module.exports.templateTags = [
   {
-    name: 'inception',
-    displayName: 'Inception',
-    description: 'encode json in json',
+    name: 'inception_json',
+    displayName: 'JSONInception',
+    description: 'encode json as json string',
     args: [
-      {
-        displayName: 'Format',
+      { 
+        displayName: 'Encoding',
         type: 'enum',
         options: [
-          { displayName: 'Json', value: 'json' },
+          { displayName: 'String', value: 'string' },
+          { displayName: 'Base64', value: 'base64' },
         ],
       },
     ],
-    run(context, format) {
-
-      if (format === 'json') {
-        return msg_json;
-      } else {
-        throw new Error('Unsupported fromat "' + format + '". Must be json.');
+    run(context, encoding) {
+        
+      if (encoding != 'string' && encoding != 'base64') {
+        throw new Error('Unsupported encoding "' + encoding + '". Must be string or base64.');
       }
+      return placeHolderMessage(encoding);
     },
   },
 ];
 
+function processNode(node) {
+    if (node == null || typeof node != 'object') {
+        return;
+    }
+    for (var prop in node) {
+        processNode(node[prop]);
+        if (prop.indexOf(marker) > 0) {
+            var encoding = placeHolderRegex.exec(prop)[1];
+            node[prop.replace(placeHolderRegex, '')] = JSON.stringify(node[prop]);
+            delete node[prop];
+        }
+    }
+}
+
 module.exports.requestHooks = [
     context => {
-		var body = context.request.getBodyText();
-		var cursor = body.indexOf(msg_json);
-		while (cursor > 0) {
-			var start = cursor;
-			cursor = body.indexOf("{", cursor + msg_json.length);
-			var balance = 1;
-			while (balance > 0 && cursor > 0 && cursor < body.length) {
-				++cursor;
-				if (body.charAt(cursor) == "{") {
-					++balance;
-				} else if (body.charAt(cursor) == "}") {
-					--balance;
-				}
-			}
-			var json = JSON.stringify(body.substring(start + msg_json.length, cursor + 1));
-			body = body.substring(0, start) + json + body.substring(cursor + 1, body.length);
-			cursor = body.indexOf(msg_json, start + json.length + 1);
-		};
-		context.request.setBodyText(body);
-	}
+        var body = context.request.getBodyText();
+        if (body.indexOf(marker) < 0) {
+            return; //fast return if tag is not used
+        }
+        var bodyJson = JSON.parse(body);
+        processNode(bodyJson);
+        context.request.setBodyText(JSON.stringify(bodyJson));
+    }
 ];
