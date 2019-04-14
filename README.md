@@ -1,6 +1,7 @@
 # Inception plugin for Insomnia
-Plugin for Insomnia to encode json as json string property.
-Insomnia is a REST/HTTP client: https://github.com/getinsomnia/insomnia
+Plugin for Insomnia to encode json within json.
+The name **inception** is a pop culture reference to the movie with the same title where people dream within a dream. 
+[Insomnia](https://github.com/getinsomnia/insomnia) is a REST/HTTP client.
 
 ## Use case
 Many APIs are "envelope" APIs, that is they have a JSON model and are used to carry a client-defined payload. Some clients would use JSON for the payload and need to write JSON (payload) as a string value for a JSON (model) property.
