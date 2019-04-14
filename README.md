@@ -14,4 +14,10 @@ The node package name is **insomnia-plugin-inception**.
 ## Usage
 Place the **JSONString** [template tag](https://support.insomnia.rest/article/40-template-tags) in the name of the property which needs encoding.
 
-This is an example to publish a message with JSON payload in RabbitMQ Management API:
+This is an example to publish a message with JSON payload in [RabbitMQ Management API](https://cdn.rawgit.com/rabbitmq/rabbitmq-management/v3.7.14/priv/www/api/index.html):
+
+![body editor](docs_body_editor.PNG)
+
+When the request is sent the property is encoded:
+
+![body request](docs_body_request.PNG)
