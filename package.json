@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-inception",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Vlad Sebastian Patras <senoctar@gmail.com>",
   "description": "Insomnia json in json",
   "license": "MIT",
