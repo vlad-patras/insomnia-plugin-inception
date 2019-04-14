@@ -19,7 +19,7 @@ function processNode(node) {
     }
     for (var prop in node) {
         processNode(node[prop]);
-        if (prop.indexOf(placeHolderMessage) > 0) {
+        if (prop.indexOf(placeHolderMessage) >= 0) {
             node[prop.replace(placeHolderMessage, '')] = JSON.stringify(node[prop]);
             delete node[prop];
         }
