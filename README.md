@@ -12,7 +12,7 @@ Inception plugin can be installed like any other plugin: [Managing Insomnia Plug
 The node package name is **insomnia-plugin-inception**.
 
 ## Usage
-Place the **JSONString** [template tag](https://support.insomnia.rest/article/40-template-tags) in the name of the property which needs encoding.
+Place the **JSONString** [template tag](https://support.insomnia.rest/article/40-template-tags) anywhere in the name of the property which needs encoding.
 
 This is an example to publish a message with JSON payload in [RabbitMQ Management API](https://cdn.rawgit.com/rabbitmq/rabbitmq-management/v3.7.14/priv/www/api/index.html):
 
