@@ -27,25 +27,25 @@ function processNode(node) {
 }
 
 function processJson(jsonStr) {
-	var json = JSON.parse(jsonStr);
-	processNode(json);
-	return JSON.stringify(json);
+    var json = JSON.parse(jsonStr);
+    processNode(json);
+    return JSON.stringify(json);
 }
 
 function processBody(body) {
-	var placeHolderIndex = body.indexOf(placeHolderMessage);
-	
-	if (placeHolderIndex == 0) {
-		return JSON.stringify(processJson(body.replace(placeHolderMessage, '')));
-	} else if (placeHolderIndex > 0) {
-		return processJson(body);
-	} else {
-		return body;
-	}
+    var placeHolderIndex = body.indexOf(placeHolderMessage);
+
+    if (placeHolderIndex == 0) {
+        return JSON.stringify(processJson(body.replace(placeHolderMessage, '')));
+    } else if (placeHolderIndex > 0) {
+        return processJson(body);
+    } else {
+        return body;
+    }
 }
 
 module.exports.requestHooks = [
     context => {
-		context.request.setBodyText(processBody(context.request.getBodyText()));     
+        context.request.setBodyText(processBody(context.request.getBodyText()));
     }
 ];
