@@ -26,14 +26,26 @@ function processNode(node) {
     }
 }
 
+function processJson(jsonStr) {
+	var json = JSON.parse(jsonStr);
+	processNode(json);
+	return JSON.stringify(json);
+}
+
+function processBody(body) {
+	var placeHolderIndex = body.indexOf(placeHolderMessage);
+	
+	if (placeHolderIndex == 0) {
+		return JSON.stringify(processJson(body.replace(placeHolderMessage, '')));
+	} else if (placeHolderIndex > 0) {
+		return processJson(body);
+	} else {
+		return body;
+	}
+}
+
 module.exports.requestHooks = [
     context => {
-        var body = context.request.getBodyText();
-        if (body.indexOf(placeHolderMessage) < 0) {
-            return; //fast return if tag is not used
-        }
-        var bodyJson = JSON.parse(body);
-        processNode(bodyJson);
-        context.request.setBodyText(JSON.stringify(bodyJson));
+		context.request.setBodyText(processBody(context.request.getBodyText()));     
     }
 ];
