@@ -10,8 +10,15 @@
   },
   "main": "index.js",
   "insomnia": {
-    "name": "inception",
-    "description": "Encode json in json"
+    "name": "json-inception",
+    "displayName": "JSON Inception",
+    "description": "Encode json in json",
+    "images": {
+      "icon": "json-inception-icon.png"
+    },
+    "publisher": {
+      "name": "Patras Vlad Sebastian"
+    }
   },
   "scripts": {
     "test": "node --version"
