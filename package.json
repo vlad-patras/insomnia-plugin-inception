@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-inception",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "author": "Vlad Sebastian Patras <senoctar@gmail.com>",
   "description": "Insomnia json in json",
   "license": "MIT",
@@ -17,7 +17,8 @@
       "icon": "json-inception-icon.png"
     },
     "publisher": {
-      "name": "Patras Vlad Sebastian"
+      "name": "Patras Vlad Sebastian",
+      "icon": "https://2.gravatar.com/userimage/16670223/3b4bc106d27661ff48b2f405f1c47d13?size=80"
     }
   },
   "scripts": {
