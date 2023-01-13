@@ -4,7 +4,7 @@ The name **inception** is a pop culture reference to the movie with the same tit
 [Insomnia](https://github.com/getinsomnia/insomnia) is a REST/HTTP client.
 
 ## Use case
-Many APIs are "envelope" APIs, that is they have a JSON model and are used to carry a client-defined payload. Some clients would use JSON for the payload and need to write JSON (payload) as a string value for a JSON (model) property.
+Many APIs are "envelope" APIs, that is they have a JSON model/schema and can carry a user-defined payload as a string value. Often this payload is also a JSON and needs to be encoded/escaped as a plain JSON string, becoming difficult to read and edit.
 
 This plugin allows writing un-encoded JSON in the body editor to benefit from features like syntax highlighting and beautify.
 
